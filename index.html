@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>
+      <?=userName ?>さんようこそ！PayPayのCSVをインポートして、Zaimに取り込むことができます。
+    </h1>
+    <form id="myForm">
+      <input name="file" type="file" />
+      <button type="button" onclick="onSubmit()">upload</button>
+    </form>
+
+    <script>
+      function onSubmit() {
+        const form = document.getElementById("myForm");
+        console.log(form)
+        google.script.run
+          .withSuccessHandler(onSuccess)
+          .withFailureHandler(onFailure)
+          .gasUpload(form);
+      }
+
+      function onFailure(e) {
+        console.log(e.message);
+        alert(e.message);
+      }
+
+      function onSuccess(url) {
+        console.log(url);
+        alert("アップロードが成功しました\n" + url);
+      }
+    </script>
+  </body>
+</html>
